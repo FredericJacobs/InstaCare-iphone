@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MedicalCategory.h"
+#import "CategoryViewController.h"
 
 @interface ViewController ()
 
@@ -36,6 +37,15 @@
 
 }
 
+- (void) viewDidAppear:(BOOL)animated{
+    
+    NSIndexPath *indexPath = [myTableView indexPathForSelectedRow];
+    if (indexPath != nil) {
+        [myTableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -59,6 +69,16 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CategoryViewController *cvc = [[CategoryViewController alloc]initWithNibName:@"CategoryViewController" bundle:nil AndMedicalCategory:[categories objectAtIndex:indexPath.row]];
+    
+    [self presentViewController:cvc animated:YES completion:nil];
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

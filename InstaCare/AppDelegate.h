@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BZFoursquare.h"
 
 @class ViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+    
+    BZFoursquare *foursquare;
+    
+}
+
+- (void) setFoursquare:(BZFoursquare*)fq;
 
 @property (strong, nonatomic) UIWindow *window;
 
