@@ -33,7 +33,9 @@
                                                      andDescription:@""];
     MedicalCategory *veterinarian = [[MedicalCategory alloc]initWithName:@"Veterinarian" ID:@"4d954af4a243a5684765b473" andDescription:@""];
     
-    categories = [[NSArray alloc] initWithObjects:medicalCenter, dentist, doctor, emergency, hospital, medicalLab, optical , veterinarian, nil];
+    MedicalCategory *pharmacy = [[MedicalCategory alloc]initWithName:@"Pharmacy" ID:@"4bf58dd8d48988d10f951735" andDescription:@""];
+    
+    categories = [[NSArray alloc] initWithObjects:medicalCenter, dentist, doctor, emergency, hospital, medicalLab, optical , veterinarian, pharmacy, nil];
 
 }
 

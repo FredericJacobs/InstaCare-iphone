@@ -8,7 +8,7 @@
 
 #import "FoursquareSingleton.h"
 
-#define kClientID       @"01K3AD3H0Q5P31JOQBPKNSAGT4QIDEUJY1Q34BKQGYC54J0W"
+#define kClientID       YOU_NEED_AN_APIKEY
 #define kCallbackURL    @"instacare://foursquare"
 
 @implementation FoursquareSingleton
