@@ -1,4 +1,4 @@
-# InstaCare - Finding the closest Hospital / Pharmacy in a singly tap
+# InstaCare - Finding the closest Hospital / Pharmacy in a single tap
 
 This projects builds an *iPhone native application* to look up the closest hospitals (and other medical facilities) using the Foursquare API. 
 
