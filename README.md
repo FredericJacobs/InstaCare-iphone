@@ -6,8 +6,6 @@ This projects builds an *iPhone native application* to look up the closest hospi
 
 We want this to showcase the importance of building an open documented-oriented database of points of interests. It would be also interesting to have for each POI an indicator about the accessibility for handicapped people.
 
-![Choose](http://f.cl.ly/items/3t0S1T2q3o062K0J3i2f/IMG_0436.PNG)
-
 ## How to build the project
 
 It's easy. You need a Foursquare account. Go to their [developer portal](http://developer.foursquare.com), get an API Client ID and add it in the FoursquareSingleton class file. You're ready to go. Don't forget to create the build schemes and you're ready to go. 
@@ -15,8 +13,6 @@ It's easy. You need a Foursquare account. Go to their [developer portal](http://
 *Disclaimer* : It has only been tested on iOS6 with Xcode 4.5. This project won't be maintained. 
 
 If you have any questions, feel free to ping me on [Twitter](http://twitter.com/FredericJacobs) or [App.net](http://alpha.app.net/fredericJacobs). 
-
-![Pharmacy](http://f.cl.ly/items/230X3n2l1b0o1p461p1O/IMG_0437.PNG)
 
 ## License 
 
