@@ -6,27 +6,15 @@
 //  Copyright (c) 2012 Frederic Jacobs. All rights reserved.
 //
 #import "AppDelegate.h"
+#import "FoursquareSingleton.h"
 #import "CategoryViewController.h"
 
 @interface CategoryViewController ()
 
-@property(nonatomic,readwrite,strong) BZFoursquare *foursquare;
-@property(nonatomic,strong) BZFoursquareRequest *request;
-@property(nonatomic,copy) NSDictionary *meta;
-@property(nonatomic,copy) NSArray *notifications;
-@property(nonatomic,copy) NSDictionary *response;
 @end
 
 @implementation CategoryViewController
-@synthesize foursquare = foursquare_;
-@synthesize request = request_;
-@synthesize meta = meta_;
-@synthesize notifications = notifications_;
-@synthesize response = response_;
 @synthesize mapView, venuesTableView, medicalCategory, navigationBar;
-
-#define kClientID       @"01K3AD3H0Q5P31JOQBPKNSAGT4QIDEUJY1Q34BKQGYC54J0W"
-#define kCallbackURL    @"instacare://foursquare"
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil AndMedicalCategory:(MedicalCategory*)category
 {
@@ -34,15 +22,49 @@
     if (self) {
         medicalCategory = category;
         locationSet = FALSE;
-        self.foursquare = [[BZFoursquare alloc] initWithClientID:kClientID callbackURL:kCallbackURL];
-        foursquare_.version = @"20111119";
-        foursquare_.locale = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
-        foursquare_.sessionDelegate = self;
-        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        [delegate setFoursquare:foursquare_];
     }
     return self;
+}
+
+- (void) updateViewWithDictionary:(NSDictionary*)dictionary{
+    
+    venues = [dictionary objectForKey:@"venues"];
+    
+    NSLog(@"%@ and features %i entries",venues,[venues count]);
+    
+    
+    [venuesTableView reloadData];
+        
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 1;
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+    return @"Close to you";
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    if (venues != nil) {
+        return [venues count];
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    
+    cell.textLabel.text = [[venues objectAtIndex:indexPath.row]objectForKey:@"name"];
+    
+    NSLog(@"%@",  [[venues objectAtIndex:indexPath.row]objectForKey:@"name"]);
+    return cell;
+    
 }
 
 - (void)mapView:(MKMapView *)aMapView didUpdateUserLocation:(MKUserLocation *)aUserLocation {
@@ -58,7 +80,17 @@
     if (!locationSet) {
         [aMapView setRegion:region animated:YES];
         locationSet = true;
+        [[FoursquareSingleton sharedManager]searchVenuesAtLocation:[NSString stringWithFormat:@"%f,%f",location.latitude, location.longitude]AndWithCategory:medicalCategory.iDentifier];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+    if(![[[FoursquareSingleton sharedManager]foursquare] isSessionValid]){
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Session not valid" message:@"Fuck this shit" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -69,9 +101,7 @@
     mapView.showsUserLocation = YES;
     mapView.mapType = MKMapTypeStandard;
     mapView.delegate = self;
-    if (![foursquare_ isSessionValid]) {
-        [foursquare_ startAuthorization];
-    }
+    [[FoursquareSingleton sharedManager]setTheDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning

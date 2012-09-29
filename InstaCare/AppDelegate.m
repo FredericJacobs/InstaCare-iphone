@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FoursquareSingleton.h"
 
 #import "ViewController.h"
 
@@ -19,16 +20,18 @@
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    
+    if (![[[FoursquareSingleton sharedManager]foursquare] isSessionValid]) {
+        [[[FoursquareSingleton sharedManager]foursquare]startAuthorization];
+    }
+    
     return YES;
-}
-
-- (void) setFoursquare:(BZFoursquare*)fq{
-    foursquare = fq;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
-    return [foursquare handleOpenURL:url];
+    return [[[FoursquareSingleton sharedManager]foursquare] handleOpenURL:url];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

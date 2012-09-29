@@ -12,12 +12,8 @@
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    
-    BZFoursquare *foursquare;
-    
+        
 }
-
-- (void) setFoursquare:(BZFoursquare*)fq;
 
 @property (strong, nonatomic) UIWindow *window;
 
