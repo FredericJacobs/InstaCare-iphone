@@ -16,7 +16,9 @@
     MedicalCategory *medicalCategory;
     IBOutlet UINavigationBar *navigationBar;
     BOOL locationSet;
+    NSMutableArray *annotations;
     NSArray *venues;
+    NSIndexPath *selectedRow;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationBar *navigationBar;

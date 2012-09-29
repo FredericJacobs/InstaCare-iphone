@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "FoursquareSingleton.h"
 #import "CategoryViewController.h"
+#import "AddressAnnotation.h"
 
 @interface CategoryViewController ()
 
@@ -29,12 +30,62 @@
 - (void) updateViewWithDictionary:(NSDictionary*)dictionary{
     
     venues = [dictionary objectForKey:@"venues"];
-    
-    NSLog(@"%@ and features %i entries",venues,[venues count]);
-    
-    
+
+    NSLog(@"%@",venues);
     [venuesTableView reloadData];
+    [self updateAnnotations];
         
+}
+
+- (void) updateAnnotations{
+    
+    if(annotations != nil) {
+        NSMutableArray *toRemove = [NSMutableArray arrayWithCapacity:10];
+        for (id annotation in mapView.annotations)
+            if (annotation != mapView.userLocation)
+                [toRemove addObject:annotation];
+        [mapView removeAnnotations:toRemove];
+        
+        annotations = nil;
+    }
+    
+    else{
+        annotations = [[NSMutableArray alloc]init];
+    }
+    
+    for (int i = 0; i < [venues count]; i++) {
+        NSString *latitude = [[[venues objectAtIndex:i]objectForKey:@"location"]objectForKey:@"lat"];
+        NSString *longitude = [[[venues objectAtIndex:i]objectForKey:@"location"]objectForKey:@"lng"];
+        NSString *distance = [[[venues objectAtIndex:i]objectForKey:@"location"]objectForKey:@"distance"];
+    
+                
+        float kmDistance = [distance integerValue];
+        
+        if (kmDistance > 1000) {
+            float dividedNumber = kmDistance / 1000;
+            NSString* formattedNumber = [NSString stringWithFormat:@"%.02f", dividedNumber];
+            distance = [NSString stringWithFormat:@"%@ km",formattedNumber];
+            
+        }
+        
+        else{
+            distance = [NSString stringWithFormat:@"%i m", (int)kmDistance];
+        }
+        
+        NSString *name = [[venues objectAtIndex:i]objectForKey:@"name"];
+        
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([latitude floatValue], [longitude floatValue]);
+        
+        AddressAnnotation *annotation = [[AddressAnnotation alloc]initWithCoordinate:location];
+        annotation.title = name;
+        [annotation setTag:i];
+        annotation.subtitle = [NSString stringWithFormat:@"%@ away", distance];
+        
+        [annotations addObject:annotation];
+    }
+
+    [mapView addAnnotations:annotations];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -62,9 +113,28 @@
     
     cell.textLabel.text = [[venues objectAtIndex:indexPath.row]objectForKey:@"name"];
     
-    NSLog(@"%@",  [[venues objectAtIndex:indexPath.row]objectForKey:@"name"]);
     return cell;
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [mapView selectAnnotation:[annotations objectAtIndex:indexPath.row] animated:YES];
+    
+    if ([selectedRow isEqual:indexPath]) {
+        
+        NSString *venueID = [[venues objectAtIndex:indexPath.row]objectForKey:@"id"];
+        
+        NSString *fsqString = [NSString stringWithFormat:@"foursquare://venues/%@",venueID];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: fsqString]];
+        
+    }
+    
+    else{
+        selectedRow = indexPath;
+    }
+
 }
 
 - (void)mapView:(MKMapView *)aMapView didUpdateUserLocation:(MKUserLocation *)aUserLocation {
@@ -90,6 +160,45 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Session not valid" message:@"Fuck this shit" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
+    
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    MKPinAnnotationView *mapPin = nil;
+    if(annotation != map.userLocation)
+    {
+        static NSString *defaultPinID = @"defaultPin";
+        mapPin = (MKPinAnnotationView *)[map dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+        if (mapPin == nil )
+        {
+            mapPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
+                                                      reuseIdentifier:defaultPinID];
+            mapPin.canShowCallout = YES;
+            UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            mapPin.rightCalloutAccessoryView = infoButton;
+            AddressAnnotation *annotation = (AddressAnnotation*)annotation;
+            infoButton.tag = annotation.tag;
+            [infoButton addTarget:self action:@selector(didSelectDisclosureInfo:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else
+            mapPin.annotation = annotation;
+        
+    }
+    return mapPin;
+}
+
+- (void) didSelectDisclosureInfo:(UIButton*)button{
+    int i = button.tag;
+    
+    NSString *latitude = [[[venues objectAtIndex:i]objectForKey:@"location"]objectForKey:@"lat"];
+    NSString *longitude = [[[venues objectAtIndex:i]objectForKey:@"location"]objectForKey:@"lng"];
+    
+    NSString *ll = [NSString stringWithFormat:@"%f,%f",[latitude floatValue], [longitude floatValue]];
+    
+    NSString *queryString = [NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@",ll];
+    NSLog(@"%@",queryString);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: queryString]];
     
 }
 
