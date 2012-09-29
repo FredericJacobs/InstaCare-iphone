@@ -2,9 +2,6 @@
 
 ![Pharmacy View](http://f.cl.ly/items/3Z3k422G0Q1K0c1C170z/IMG_0439.PNG)
 
-![Pharmacy](http://f.cl.ly/items/230X3n2l1b0o1p461p1O/IMG_0437.PNG)
-
-
 This projects builds an *iPhone native application* to look up the closest hospitals (and other medical facilities) using the Foursquare API. 
 
 We want this to showcase the importance of building an open documented-oriented database of points of interests. It would be also interesting to have for each POI an indicator about the accessibility for handicapped people.
@@ -17,7 +14,9 @@ It's easy. You need a Foursquare account. Go to their [developer portal](http://
 
 *Disclaimer* : It has only been tested on iOS6 with Xcode 4.5. This project won't be maintained. 
 
-If you have any questions, feel free to ping me on [Twitter](http://twitter.com/FredericJacobs) or [App.net](http://alpha.app.net/fredericJacobs).  
+If you have any questions, feel free to ping me on [Twitter](http://twitter.com/FredericJacobs) or [App.net](http://alpha.app.net/fredericJacobs). 
+
+![Pharmacy](http://f.cl.ly/items/230X3n2l1b0o1p461p1O/IMG_0437.PNG)
 
 ## License 
 
