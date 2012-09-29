@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6A6405B1617393000EF40B6 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A640591617393000EF40B6 /* CategoryViewController.m */; };
+		B6A6405C1617393000EF40B6 /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6A6405A1617393000EF40B6 /* CategoryViewController.xib */; };
 		B6C7C0F91615C4E9006A3472 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C7C0F81615C4E9006A3472 /* UIKit.framework */; };
 		B6C7C0FB1615C4E9006A3472 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C7C0FA1615C4E9006A3472 /* Foundation.framework */; };
 		B6C7C0FD1615C4E9006A3472 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6C7C0FC1615C4E9006A3472 /* CoreGraphics.framework */; };
@@ -19,8 +21,6 @@
 		B6C7C1121615C4E9006A3472 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7C1111615C4E9006A3472 /* ViewController.m */; };
 		B6C7C1151615C4E9006A3472 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C7C1131615C4E9006A3472 /* ViewController.xib */; };
 		B6C7C11D1615CE83006A3472 /* MedicalCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7C11C1615CE83006A3472 /* MedicalCategory.m */; };
-		B6C7C1291615DE19006A3472 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C7C1271615DE19006A3472 /* CategoryViewController.m */; };
-		B6C7C12A1615DE19006A3472 /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C7C1281615DE19006A3472 /* CategoryViewController.xib */; };
 		B6DE5E231617022C00424DD3 /* FoursquareSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DE5E221617022C00424DD3 /* FoursquareSingleton.m */; };
 		B6DE5E2D16171CB300424DD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DE5E2C16171CB300424DD3 /* CoreLocation.framework */; };
 		B6F1CBD41615E60E00BDB2F8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F1CBD31615E60E00BDB2F8 /* MapKit.framework */; };
@@ -30,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6A640581617393000EF40B6 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		B6A640591617393000EF40B6 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		B6A6405A1617393000EF40B6 /* CategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		B6C7C0F41615C4E9006A3472 /* InstaCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C7C0F81615C4E9006A3472 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B6C7C0FA1615C4E9006A3472 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,9 +51,6 @@
 		B6C7C1141615C4E9006A3472 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		B6C7C11B1615CE83006A3472 /* MedicalCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalCategory.h; sourceTree = "<group>"; };
 		B6C7C11C1615CE83006A3472 /* MedicalCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalCategory.m; sourceTree = "<group>"; };
-		B6C7C1261615DE19006A3472 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryViewController.h; path = ../CategoryViewController.h; sourceTree = "<group>"; };
-		B6C7C1271615DE19006A3472 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryViewController.m; path = ../CategoryViewController.m; sourceTree = "<group>"; };
-		B6C7C1281615DE19006A3472 /* CategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryViewController.xib; path = ../CategoryViewController.xib; sourceTree = "<group>"; };
 		B6DE5E211617022C00424DD3 /* FoursquareSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareSingleton.h; sourceTree = "<group>"; };
 		B6DE5E221617022C00424DD3 /* FoursquareSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoursquareSingleton.m; sourceTree = "<group>"; };
 		B6DE5E29161718A300424DD3 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
@@ -114,12 +114,12 @@
 			isa = PBXGroup;
 			children = (
 				B6F1CBE01615EA0C00BDB2F8 /* Foursquare Lib */,
+				B6A640581617393000EF40B6 /* CategoryViewController.h */,
+				B6A640591617393000EF40B6 /* CategoryViewController.m */,
+				B6A6405A1617393000EF40B6 /* CategoryViewController.xib */,
 				B6C7C1071615C4E9006A3472 /* AppDelegate.h */,
 				B6C7C1081615C4E9006A3472 /* AppDelegate.m */,
 				B6DE5E29161718A300424DD3 /* AddressAnnotation.h */,
-				B6C7C1261615DE19006A3472 /* CategoryViewController.h */,
-				B6C7C1271615DE19006A3472 /* CategoryViewController.m */,
-				B6C7C1281615DE19006A3472 /* CategoryViewController.xib */,
 				B6C7C1101615C4E9006A3472 /* ViewController.h */,
 				B6C7C1111615C4E9006A3472 /* ViewController.m */,
 				B6C7C11B1615CE83006A3472 /* MedicalCategory.h */,
@@ -213,7 +213,7 @@
 				B6C7C10D1615C4E9006A3472 /* Default@2x.png in Resources */,
 				B6C7C10F1615C4E9006A3472 /* Default-568h@2x.png in Resources */,
 				B6C7C1151615C4E9006A3472 /* ViewController.xib in Resources */,
-				B6C7C12A1615DE19006A3472 /* CategoryViewController.xib in Resources */,
+				B6A6405C1617393000EF40B6 /* CategoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,10 +228,10 @@
 				B6C7C1091615C4E9006A3472 /* AppDelegate.m in Sources */,
 				B6C7C1121615C4E9006A3472 /* ViewController.m in Sources */,
 				B6C7C11D1615CE83006A3472 /* MedicalCategory.m in Sources */,
-				B6C7C1291615DE19006A3472 /* CategoryViewController.m in Sources */,
 				B6F1CBDE1615EA0700BDB2F8 /* BZFoursquare.m in Sources */,
 				B6F1CBDF1615EA0700BDB2F8 /* BZFoursquareRequest.m in Sources */,
 				B6DE5E231617022C00424DD3 /* FoursquareSingleton.m in Sources */,
+				B6A6405B1617393000EF40B6 /* CategoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
